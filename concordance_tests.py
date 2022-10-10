@@ -41,36 +41,12 @@ class TestList(unittest.TestCase):
         conc = Concordance()
         conc.load_stop_table("stop_words.txt")
 
-    # def test_04(self):
-    #     conc = Concordance()
-    #     conc.load_stop_table("stop_words_the.txt")
-    #     conc.load_concordance_table("file_the.txt")
-    #     conc.write_concordance("file_the_con.txt")
-    #     err = subprocess.call("diff -wb file_the_con.txt file_the_sol.txt", shell = True)
-    #     self.assertEqual(err, 0)
-
     def test_6(self):
         conc = Concordance()
         with self.assertRaises(FileNotFoundError):
             conc.load_stop_table("random.txt")
         with self.assertRaises(FileNotFoundError):
             conc.load_concordance_table("random.txt")
-
-    # def test_05(self):
-    #     conc = Concordance()
-    #     conc.load_stop_table("stop_words.txt")
-    #     conc.load_concordance_table("War_And_Peace.txt")
-    #     conc.write_concordance("War_And_Peace_con.txt")
-    #     err = subprocess.call("diff -wb War_And_Peace_con.txt War_And_Peace_sol.txt", shell = True)
-    #     self.assertEqual(err, 0)
-    #
-    # def test_06(self):
-    #     conc = Concordance()
-    #     conc.load_stop_table("stop_words.txt")
-    #     conc.load_concordance_table("dictionary_a-c.txt")
-    #     conc.write_concordance("dictionary_a-c_con.txt")
-    #     err = subprocess.call("diff -wb dictionary_a-c_con.txt dictionary_a-c_sol.txt", shell = True)
-    #     self.assertEqual(err, 0)
 
     def test_only_punct(self):
         conc = Concordance()
