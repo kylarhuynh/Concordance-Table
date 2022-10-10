@@ -9,8 +9,7 @@ class Concordance:
 
     def load_stop_table(self, filename):
         """ Read stop words from input file (filename) and insert each word as a key into the stop words hash table.
-        Starting size of hash table should be 191: self.stop_table = HashTable(191)
-        If file does not exist, raise FileNotFoundError"""
+        Starting size of hash table is 191."""
         self.stop_table = HashTable(191)
         try:
             with open(filename) as stops:
@@ -26,15 +25,10 @@ class Concordance:
     def load_concordance_table(self, filename):
         """ Read words from input text file (filename) and insert them into the concordance hash table, 
         after processing for punctuation, numbers and filtering out words that are in the stop words hash table.
-        (The stop words hash table could possibly be None.)
-        Do not include duplicate line numbers (word appearing on same line more than once, just one entry for that line)
-        Starting size of hash table should be 191: self.concordance_table = HashTable(191)
-        If file does not exist, raise FileNotFoundError"""
+        Does not include duplicate line numbers (word appearing on same line more than once.)
+        Starting size of hash table is 191."""
+        
         self.concordance_table = HashTable(191)
-        # stoplist = []
-        # for i in self.stop_table:
-        #     if i is not None:
-        #         stoplist.append(i.key)
         try:
             with open(filename) as text:
                 i = 1
@@ -58,10 +52,8 @@ class Concordance:
             raise FileNotFoundError
         text.close()
 
-
     def write_concordance(self, filename):
-        """ Write the concordance entries to the output file(filename)
-        See sample output files for format."""
+        """ Write the concordance entries to the output file(filename)"""
         result = self.concordance_table.get_all_keys()
         result.sort()
         output = open(filename, 'w')
@@ -73,17 +65,3 @@ class Concordance:
             output.write("\n")
             output.write(s + ": " + self.concordance_table.get_value(s))
         output.close()
-
-
-# string1 = "Lo;lli.p,op"
-# n = string1.replace("o", "")
-# print(n)
-# punct = string.punctuation
-# for c in punct:
-#     n = n.replace(c, " ")
-# print(n)
-# n = n.split()
-# print(n)
-# for c in n:
-#     if c.isalpha():
-#         print(c)
