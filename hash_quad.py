@@ -12,8 +12,7 @@ class HashTable:
 
     def __init__(self, table_size):  # add appropriate attributes, NO default size
         ''' Initializes an empty hash table with a size that is the smallest
-            prime number that is >= table_size (i.e. if 10 is passed, 11 will 
-            be used, if 11 is passed, 11 will be used.)'''
+            prime number that is bigger than table_size '''
         if self.is_prime(table_size):
             table_size = table_size
         else:
@@ -59,8 +58,7 @@ class HashTable:
                 self.insert(entry.key, entry.value)
 
     def horner_hash(self, key):
-        ''' Compute the hash value by using Horner’s rule, as described in project specification.
-            This method should not mod with the table size'''
+        ''' Compute the hash value by using Horner’s rule, as described in project specification. '''
         n = min(8, len(key))
         hash_value = 0
         for i in range(n):
@@ -113,17 +111,9 @@ class HashTable:
                     index = index - self.table_size
         return False
 
-        # if self.get_num_items() == 0:
-        #     return False
-        # for entry in self.hash_table:
-        #     if entry is not None:
-        #         if entry.key == key:
-        #             return True
-        # return False
-
     def get_index(self, key):
         ''' Returns the index of the hash table entry containing the provided key. 
-        If there is not an entry with the provided key, returns None.'''
+        If there is not an entry with the provided key, returns None. '''
         index = self.horner_hash(key) % self.table_size
         start = index
         i = 0
@@ -136,13 +126,6 @@ class HashTable:
                 while index > self.table_size - 1:
                     index = index - self.table_size
         return None
-        # if self.get_num_items() == 0:
-        #     return None
-        # for index in range(len(self.hash_table)):
-        #     if self.hash_table[index] is not None:
-        #         if self.hash_table[index].key == key:
-        #             return index
-        # return None
 
     def get_all_keys(self):
         ''' Returns a Python list of all keys in the hash table.'''
@@ -167,12 +150,6 @@ class HashTable:
                 while index > self.table_size - 1:
                     index = index - self.table_size
         return None
-        # if self.in_table(key):
-        #     for entry in self.hash_table:
-        #         if entry is not None:
-        #             if entry.key == key:
-        #                 return entry.value
-        # return None
 
     def get_num_items(self):
         ''' Returns the number of entries in the table.'''
